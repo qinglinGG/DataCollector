@@ -1,0 +1,28 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "pages/index/imgs/index_groups.jpg",
+        "selectedIconPath": "pages/index/imgs/index_selected.jpg",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "iconPath": "pages/index/imgs/user_selected.jpg",
+        "selectedIconPath": "pages/index/imgs/user_unselected.jpg",
+        "text": "我"
+      }
+    ]
+  },
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "数据收集家",
+    "navigationBarTextStyle":"black"
+  }
+}
