@@ -1,11 +1,31 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container page">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
+  </view>
+
+  <view class="weui_grids">
+    <view class="weui_grid js_grid">
+      <view class="weui_grid_icon">
+          <image src="{{userInfo.avatarUrl}}"></image>         
+      </view>
+       <view class='weui_grid_label'>七星彩</view>
+      <view class="weui_grid_icon">
+          <image src="{{userInfo.avatarUrl}}" background-size="cover"></image>          
+      </view>
+      <view class='weui_grid_label'>双色球</view>
+    </view>
+  </view>
+
+  <view>
+    <view wx:for="{{hisList}}" wx:for-item="hisItem">
+      <text>{{hisItem.expect}}</text>
+      <text>{{hisItem.opencode}}</text>
+    </view>
   </view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
