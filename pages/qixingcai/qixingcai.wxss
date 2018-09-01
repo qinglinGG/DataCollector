@@ -3,3 +3,8 @@
   width: 150rpx;
   height: 150rpx;
 }
+
+.qi-hao {
+  width:180rpx;
+  font-size:30rpx;
+}

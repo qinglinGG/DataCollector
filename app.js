@@ -35,5 +35,26 @@ App({
   },
   globalData: {
     userInfo: null
+  },
+  getHisList( url, succ ) {
+    // 七星彩查询地址 'http://f.apiplus.net/qxc-20.json'
+    wx.request({
+      url: url,
+      success: function (r) {
+        console.log("loadingHis succ", r);
+        try {
+          succ(r.data.data );
+          //pageObj.showHisList(r.data.data);
+        } catch (net_excep) {
+          console.error('Query history fail, error_info is=', net_excep);          
+        }
+      },
+      complete: function (info) {
+        console.log('loadingHis complete');
+      },
+      fail: function (err) {
+        console.error('loadingHis fail', err);
+      }
+    })
   }
 })

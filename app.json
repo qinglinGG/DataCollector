@@ -7,13 +7,13 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/qixingcai/qixingcai",
         "iconPath": "pages/index/imgs/index_groups.jpg",
         "selectedIconPath": "pages/index/imgs/index_selected.jpg",
         "text": "首页"
       },
       {
-        "pagePath": "pages/qixingcai/qixingcai",
+        "pagePath": "pages/index/index",
         "iconPath": "pages/index/imgs/index_groups.jpg",
         "selectedIconPath": "pages/index/imgs/index_selected.jpg",
         "text": "七星"

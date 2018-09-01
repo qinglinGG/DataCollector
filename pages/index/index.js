@@ -1,11 +1,23 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
+//未开发模块通用图标
+var doingImg = '../imgs/doing.jpg';
+//模块列表定义,  可通过后台查询返回
+var modules = [
+  { name: '七星彩', icon: 'imgs/qixingcai.jpg' },
+  { name: '排列五', icon: doingImg },
+  { name: '排列三', icon: doingImg },
+  { name: '双色彩', icon: doingImg },
+  { name: '时时彩', icon: doingImg },
+  { name: '大乐透', icon: 'imgs/daletou.jpg' }
+];
 
 var pageObj = {
   data: {
     motto: 'Hello World',
     userInfo: {},
+    grids: modules,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -44,16 +56,6 @@ var pageObj = {
         }
       })
     }
-    var win = this;
-    console.log('What is po:', this);
-    this.loadingHis({
-      succ:function(hisList){
-        win.setData({
-          hisList: hisList
-      })
-      }
-    })
-
   },
   getUserInfo: function (e) {
     console.log(e)
@@ -62,33 +64,7 @@ var pageObj = {
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  },
-  showHisList(hisList){
-    pageObj.setData({
-      hisList: hisList
-    });
-  },
-  loadingHis( cb ) {    
-    wx.request({
-      url: 'http://f.apiplus.net/qxc-20.json',
-      success: function (r) {
-        console.log("loadingHis succ", r);
-        try {
-          cb.succ(r.data.data);
-          //pageObj.showHisList(r.data.data);
-        } catch (net_excep) {
-          console.error('Query history fail, error_info is=', net_excep);
-        }
-        
-      },
-      complete: function (info) {
-        console.log('loadingHis complete');
-      },
-      fail: function (err) {
-        console.error('loadingHis fail', err);
-      }
-    })
-  }
+  }  
 }
 
-Page( pageObj )
+Page( pageObj );
