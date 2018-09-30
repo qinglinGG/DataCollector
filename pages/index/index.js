@@ -5,12 +5,12 @@ const app = getApp();
 var doingImg = '../imgs/doing.jpg';
 //模块列表定义,  可通过后台查询返回
 var modules = [
-  { name: '七星彩', icon: 'imgs/qixingcai.jpg' },
-  { name: '排列五', icon: doingImg },
-  { name: '排列三', icon: doingImg },
-  { name: '双色彩', icon: doingImg },
-  { name: '时时彩', icon: doingImg },
-  { name: '大乐透', icon: 'imgs/daletou.jpg' }
+  { name: '七星彩', icon: 'imgs/qixingcai.jpg', done: true, url: '../qixingcai/qixingcai' },
+  { name: '排列五', icon: doingImg, done: false},
+  { name: '排列三', icon: doingImg, done: false},
+  { name: '双色彩', icon: doingImg, done: false},
+  { name: '时时彩', icon: doingImg, done: false},
+  { name: '大乐透', icon: 'imgs/daletou.jpg', done: false}
 ];
 
 var pageObj = {
@@ -24,9 +24,25 @@ var pageObj = {
   //事件处理函数
   bindViewTap: function () {
     console.log('onclick event');
-    wx.navigateTo({
+    // wx.navigateTo({
+    wx.switchTab({
       url: '../logs/logs'
-    })
+    });
+  },
+  openModule: function( eventObj){
+    var mdConfig = eventObj.currentTarget.dataset.item;
+    if (mdConfig.done ) {
+      wx.navigateTo({
+        url: mdConfig.url
+      });
+    } else {
+      wx.showToast({
+        title: mdConfig.name + '正在升级中……',
+        icon: 'loading',
+        duration: 3000
+      });
+    }
+    console.log('mdConfig:', mdConfig);
   },
   onLoad: function () {
     if (app.globalData.userInfo) {

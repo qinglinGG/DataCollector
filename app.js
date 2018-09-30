@@ -38,23 +38,42 @@ App({
   },
   getHisList( url, succ ) {
     // 七星彩查询地址 'http://f.apiplus.net/qxc-20.json'
-    wx.request({
-      url: url,
-      success: function (r) {
-        console.log("loadingHis succ", r);
-        try {
-          succ(r.data.data );
-          //pageObj.showHisList(r.data.data);
-        } catch (net_excep) {
-          console.error('Query history fail, error_info is=', net_excep);          
+    var list = wx.getStorageSync(url);
+    // wx.getStorage({
+    //   key: url,
+    //   success: function(res) {
+    //     console.log( 'wx.getStorage succ res: ', res);
+    //     list = res.data;
+    //   }, 
+    //   fail: function (excep ){
+    //     console.error('wx.getStorage info fail:', excep);
+    //   }
+    // });
+    if ( list ) {
+      console.log( 'get hisList from wxStorage');
+      succ( list );
+    } else {
+      wx.request({
+        url: url,
+        success: function (r) {
+          console.log("loadingHis succ", r);
+          try {
+            // debugger;
+            wx.setStorage({
+              key: url,
+              data: r.data.data
+            });
+            succ(r.data.data);            
+            //pageObj.showHisList(r.data.data);
+          } catch (net_excep) {
+            console.error('Query history fail, error_info is=', net_excep);
+          }
+        },
+        fail: function (err) {
+          console.error('loadingHis fail', err);
         }
-      },
-      complete: function (info) {
-        console.log('loadingHis complete');
-      },
-      fail: function (err) {
-        console.error('loadingHis fail', err);
-      }
-    })
+      })
+    }
+    
   }
 })
